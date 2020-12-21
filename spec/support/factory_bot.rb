@@ -1,3 +1,3 @@
 RSpec.configure do |config|
-  config.include FactoryBot::Sixtax::Methods
+  config.include FactoryBot::Syntax::Methods
 end
