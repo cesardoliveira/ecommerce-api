@@ -7,6 +7,11 @@ DeviseTokenAuth.setup do |config|
   # each request.
   config.change_headers_on_each_request = true
 
+  # This flow is enabled with require_client_password_reset_token (by default is false), it is also useful for webs. 
+  # This flow was done because the main one doesn't support deep linking (if you want to reset the password in the web/mobile app). 
+  # It works like the main one but instead of receiving and sending the auth headers, you need to send the reset_password_token
+  config.require_client_password_reset_token = true
+
   # By default, users will need to re-authenticate after 2 weeks. This setting
   # determines how long tokens will remain valid after they are issued.
   config.token_lifespan = 1.weeks
