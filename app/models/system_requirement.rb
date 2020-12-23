@@ -5,4 +5,6 @@ class SystemRequirement < ApplicationRecord
   validates :processor, presence: true
   validates :memory, presence: true
   validates :video_board, presence: true
+
+  has_many :game, dependent: :restrict_with_error
 end
