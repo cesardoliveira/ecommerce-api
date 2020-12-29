@@ -1,6 +1,6 @@
 module RequestAPI
   def body_json(symbolize_keys: false)
-    json = JSON.parse(responde.body)
+    json = JSON.parse(response.body)
     symbolize_keys ? json.deep_symbolize_keys : json 
   rescue 
     return {}
