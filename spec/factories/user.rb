@@ -4,6 +4,6 @@ FactoryBot.define do
     email { Faker::Internet.email }
     password { "123456" }
     password_confirmation { "123456" }
-    profile { [:admin, :client].sample } #%i(pvp pve both).sample
+    profile { :admin }
   end
 end
