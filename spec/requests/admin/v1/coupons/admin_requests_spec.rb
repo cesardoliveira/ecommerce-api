@@ -23,23 +23,23 @@ RSpec.describe "Admin::V1::Coupons as :admin", type: :request do
     let(:url) { "/admin/v1/coupons" }
     
     context "with valid params" do
-      let(:coupons_params) { { coupon: attributes_for(:coupon) }.to_json }
+      let(:coupon_params) { { coupon: attributes_for(:coupon) }.to_json }
 
       it 'adds a new Coupon' do
         expect do
-          post url, headers: auth_header(user), params: coupons_params
+          post url, headers: auth_header(user), params: coupon_params
         end.to change(Coupon, :count).by(1)
       end
 
       it 'returns last added Coupon' do 
-        post url, headers: auth_header(user), params: coupons_params
+        post url, headers: auth_header(user), params: coupon_params
         expected_coupon = Coupon.last
         .as_json(only: %i(id code status discount_value due_date))
         expect(body_json['coupon']) == expected_coupon
       end
 
       it 'returns success status' do
-        post url, headers: auth_header(user), params: coupons_params
+        post url, headers: auth_header(user), params: coupon_params
         expect(response).to have_http_status(:ok)
       end
     end
@@ -81,7 +81,7 @@ RSpec.describe "Admin::V1::Coupons as :admin", type: :request do
         expect(coupon.code) == new_code
       end
 
-      it 'returns updated coupon' do
+      it 'returns updated Coupon' do
         patch url, headers: auth_header(user), params: coupon_params
         coupon.reload
         expected_coupon = coupon
@@ -117,7 +117,6 @@ RSpec.describe "Admin::V1::Coupons as :admin", type: :request do
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
-
   end
   
   context "DELETE /coupons/:id" do
